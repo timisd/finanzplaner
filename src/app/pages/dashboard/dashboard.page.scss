@@ -1,0 +1,9 @@
+@import "src/colors";
+
+.title {
+  text-align: center;
+  margin: 2%;
+  font-size: 222%;
+  font-weight: bold;
+  text-shadow: 0 0 10px $accent-color;
+}

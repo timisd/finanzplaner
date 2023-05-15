@@ -1,0 +1,35 @@
+.message-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+
+  .red {
+    color: red;
+    font-size: 888%;
+    margin-right: 4vw;
+  }
+
+  .error-message {
+    font-size: 200%;
+  }
+}
+
+.redirection-message {
+  margin-top: 1%;
+  font-size: 125%;
+}
+
+.button-wrapper {
+  margin-top: 1%;
+}
+
+p-button {
+  margin: 20px;
+}
