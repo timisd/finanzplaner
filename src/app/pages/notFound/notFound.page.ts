@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-page-notfound',
-  templateUrl: './notfound.page.html',
-  styleUrls: ['./notfound.page.scss'],
+  selector: 'app-page-notFound',
+  templateUrl: './notFound.page.html',
+  styleUrls: ['./notFound.page.scss'],
 })
 export class NotFoundPage implements OnInit {
   public waitingForRedirect: boolean = true;
@@ -30,6 +30,6 @@ export class NotFoundPage implements OnInit {
   }
 
   public RedirectToDashboard(): void {
-    this._router.navigate(['/']).then((r) => null);
+    this._router.navigate(['/']);
   }
 }

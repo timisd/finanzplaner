@@ -1,0 +1,20 @@
+<div class="header">
+  <div class="left">
+    <button
+      pButton
+      icon="pi pi-home"
+      pTooltip="Zurück zum Dashboard"
+      (click)="navigateBackToDashboard()"
+      *ngIf="showBackButton"
+    ></button>
+  </div>
+  <div class="title">{{ pageName }}</div>
+  <div class="right">
+    <button
+      pButton
+      icon="pi pi-plus"
+      pTooltip="{{ addButtonToolTip }}"
+      *ngIf="showAddButton"
+    ></button>
+  </div>
+</div>
