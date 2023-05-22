@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { CashflowService } from '../../services/cashflow/cashflow.service';
 import { BalanceDto } from '../../DTOs/balance.dto';
 
@@ -8,7 +9,10 @@ import { BalanceDto } from '../../DTOs/balance.dto';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage {
-  constructor(private _cashflowService: CashflowService) {}
+  constructor(
+    private _cashflowService: CashflowService,
+    private _router: Router
+  ) {}
 
   public getChartData(): BalanceDto[] {
     return [
@@ -17,5 +21,13 @@ export class DashboardPage {
       { Day: new Date(), Balance: -133 },
       { Day: new Date(), Balance: 50 },
     ];
+  }
+
+  public navigateToIncomePage(): void {
+    this._router.navigate(['/einnahmen']);
+  }
+
+  public navigateToExpansePage(): void {
+    this._router.navigate(['/ausgaben']);
   }
 }

@@ -12,6 +12,8 @@ import { BalanceOverviewComponent } from './components/balanceOverview/balanceOv
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
+import { IncomePage } from './pages/income/income.page';
+import { ExpensePage } from './pages/expense/expense.page';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { TooltipModule } from 'primeng/tooltip';
     DashboardPage,
     NotFoundPage,
     BalanceOverviewComponent,
+    IncomePage,
+    ExpensePage,
   ],
   imports: [
     BrowserModule,
