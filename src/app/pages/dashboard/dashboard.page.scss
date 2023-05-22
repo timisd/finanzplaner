@@ -7,3 +7,60 @@
   font-weight: bold;
   text-shadow: 0 0 10px $accent-color;
 }
+
+.overview {
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-gap: 10px;
+  overflow-x: hidden;
+
+  .centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .current-balance {
+      text-align: center;
+      margin-bottom: 10px;
+      font-size: 200%;
+      font-weight: bold;
+      text-shadow: 0 0 10px $accent-color;
+    }
+
+    .current-balance-amount {
+      font-size: 222%;
+      font-weight: bold;
+      text-shadow: 0 0 10px $accent-color;
+    }
+  }
+}
+
+.cashflow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+
+  .cashflow-column {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5% 5% 0 5%;
+
+    .label {
+      font-size: 200%;
+      font-weight: bold;
+      text-shadow: 0 0 10px $accent-color;
+      margin-right: 10px;
+    }
+
+    button {
+      display: flex;
+      background-color: $accent-color;
+      color: $background-color;
+      border-color: $accent-color;
+      font-weight: bold;
+      margin-left: 15px;
+    }
+  }
+}
