@@ -15,12 +15,15 @@ export class DashboardPage {
   ) {}
 
   public getChartData(): BalanceDto[] {
-    return [
-      { Day: new Date(), Balance: 50 },
-      { Day: new Date(), Balance: 500 },
-      { Day: new Date(), Balance: -133 },
-      { Day: new Date(), Balance: 50 },
-    ];
+    const dataSets: BalanceDto[] = [];
+
+    for (let i = 0; i < 30; i++) {
+      const randomBalance = Math.floor(Math.random() * 1000) - 500; // Random balance between -500 and 500
+      const dataSet: BalanceDto = { Day: new Date(), Balance: randomBalance };
+      dataSets.push(dataSet);
+    }
+
+    return dataSets;
   }
 
   public navigateToIncomePage(): void {
