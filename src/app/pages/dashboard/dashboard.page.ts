@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CashflowService } from '../../services/cashflow/cashflow.service';
-import { BalanceDto } from '../../DTOs/balance.dto';
+import { CashflowService } from '../../services';
+import { DataStore } from '../../stores';
+import { BalanceWrapper, CashflowWrapper } from '../../models';
 
 @Component({
   selector: 'app-page-dashboard',
@@ -11,19 +12,28 @@ import { BalanceDto } from '../../DTOs/balance.dto';
 export class DashboardPage {
   constructor(
     private _cashflowService: CashflowService,
-    private _router: Router
+    private _router: Router,
+    private _dataStore: DataStore
   ) {}
 
-  public getChartData(): BalanceDto[] {
-    const dataSets: BalanceDto[] = [];
+  public getChartData(): BalanceWrapper[] {
+    return this._dataStore.getBalance();
+  }
 
-    for (let i = 0; i < 30; i++) {
-      const randomBalance = Math.floor(Math.random() * 1000) - 500; // Random balance between -500 and 500
-      const dataSet: BalanceDto = { Day: new Date(), Balance: randomBalance };
-      dataSets.push(dataSet);
-    }
+  public getCurrentBalance(): string {
+    return this._dataStore
+      .getBalance()
+      [this._dataStore.getBalance().length - 1].getBalance()
+      .toLocaleString('de-DE', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+  }
 
-    return dataSets;
+  public getLastCashflows(): CashflowWrapper[] {
+    const index = this._dataStore.getCashflows().length - 8;
+
+    return this._dataStore.getCashflows().slice(index).reverse();
   }
 
   public navigateToCashflowPage(): void {

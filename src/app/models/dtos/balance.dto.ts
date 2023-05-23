@@ -1,4 +1,4 @@
 export interface BalanceDto {
-  Day: Date;
+  Date: Date;
   Balance: number;
 }

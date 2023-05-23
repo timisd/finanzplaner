@@ -1,4 +1,4 @@
-@import "src/colors";
+@import "../../../colors";
 
 .title {
   text-align: center;
@@ -60,7 +60,6 @@
         background-color: $accent-color;
         color: $background-color;
         border-color: $accent-color;
-        font-weight: bold;
         margin-left: 15px;
       }
     }

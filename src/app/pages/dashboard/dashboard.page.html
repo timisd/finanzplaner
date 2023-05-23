@@ -5,25 +5,32 @@
     <app-balance-overview [chartData]="getChartData()" />
     <div class="centered">
       <div class="current-balance">Aktueller Kontostand:</div>
-      <div class="current-balance-amount">500000 €</div>
+      <div class="current-balance-amount">{{ getCurrentBalance() }} €</div>
     </div>
   </div>
+
   <div class="cashflow">
     <div class="cashflow-column">
       <div class="label">Einnahmen & Ausgaben</div>
       <button
         pButton
         icon="pi pi-search"
-        pTooltip="Einnahme anzeigen"
+        pTooltip="Details anzeigen"
         tooltipPosition="top"
         (click)="navigateToCashflowPage()"
       ></button>
       <button
         pButton
         icon="pi pi-plus"
-        pTooltip="Einnahme hinzufügen"
+        pTooltip="Cashflow hinzufügen"
         tooltipPosition="top"
       ></button>
+    </div>
+    <div class="last-cashflows">
+      <app-cashflow-card-slim
+        *ngFor="let cashflow of getLastCashflows()"
+        [data]="cashflow"
+      />
     </div>
   </div>
 </div>

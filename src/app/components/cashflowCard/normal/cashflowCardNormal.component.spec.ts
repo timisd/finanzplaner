@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CashflowCardComponent } from './cashflowCard.component';
+import { CashflowCardNormalComponent } from './cashflowCardNormal.component';
 
 describe('CashflowCardComponent', () => {
-  let component: CashflowCardComponent;
-  let fixture: ComponentFixture<CashflowCardComponent>;
+  let component: CashflowCardNormalComponent;
+  let fixture: ComponentFixture<CashflowCardNormalComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CashflowCardComponent],
+      declarations: [CashflowCardNormalComponent],
     });
-    fixture = TestBed.createComponent(CashflowCardComponent);
+    fixture = TestBed.createComponent(CashflowCardNormalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,7 +8,8 @@ import { DashboardPage, CashflowPage, NotFoundPage } from './pages';
 import {
   BalanceOverviewComponent,
   TitleBarComponent,
-  CashflowCardComponent,
+  CashflowCardNormalComponent,
+  CashflowCardSlimComponent,
 } from './components';
 
 import { ButtonModule } from 'primeng/button';
@@ -23,7 +24,8 @@ import { TooltipModule } from 'primeng/tooltip';
     BalanceOverviewComponent,
     CashflowPage,
     TitleBarComponent,
-    CashflowCardComponent,
+    CashflowCardNormalComponent,
+    CashflowCardSlimComponent,
   ],
   imports: [
     BrowserModule,

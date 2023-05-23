@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { BalanceDto } from '../../DTOs/balance.dto';
+import { BalanceWrapper } from '../../models';
 
 @Component({
   selector: 'app-balance-overview',
@@ -8,16 +8,21 @@ import { BalanceDto } from '../../DTOs/balance.dto';
   styleUrls: ['./balanceOverview.component.scss'],
 })
 export class BalanceOverviewComponent implements OnInit {
-  @Input() public chartData!: BalanceDto[];
+  @Input() public chartData!: BalanceWrapper[];
 
   private _chart: any;
 
   ngOnInit() {
-    const chartLabels: string[] = this.chartData.map((element: BalanceDto) =>
-      element.Day.toDateString()
+    if (this.chartData.length > 30) {
+      const index = this.chartData.length - 30;
+      this.chartData = this.chartData.slice(index);
+    }
+
+    const chartLabels: string[] = this.chartData.map(
+      (element: BalanceWrapper) => element.getDate().toDateString()
     );
     const chartValues: number[] = this.chartData.map(
-      (element: BalanceDto) => element.Balance
+      (element: BalanceWrapper) => element.getBalance()
     );
 
     const chartData = {

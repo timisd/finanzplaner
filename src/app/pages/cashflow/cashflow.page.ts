@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CashflowDto } from '../../DTOs/cashflow.dto';
+import { CashflowDto } from '../../models';
 
 @Component({
   selector: 'app-cashflow',
@@ -9,7 +9,7 @@ import { CashflowDto } from '../../DTOs/cashflow.dto';
 export class CashflowPage {
   public cashflowData: CashflowDto = {
     Id: 1_000,
-    Day: new Date(),
+    Date: new Date(),
     Amount: 500,
     IsIncome: true,
     Participant: 'Hans Wurst',

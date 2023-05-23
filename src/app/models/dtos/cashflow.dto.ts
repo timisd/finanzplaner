@@ -1,6 +1,6 @@
 export interface CashflowDto {
   Id: number;
-  Day: Date;
+  Date: Date;
   Amount: number;
   IsIncome: boolean;
   Participant: string;
