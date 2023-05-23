@@ -1,17 +1,24 @@
 <div class="message-wrapper">
   <div class="error">
-    <i class="fas fa-exclamation-triangle red"></i>
+    <i class="pi pi-exclamation-triangle red"></i>
     <div class="error-message">Die aufgerufene Seite wurde nicht gefunden!</div>
   </div>
   <div class="redirection-message" *ngIf="waitingForRedirect">
     Sie werden in {{ countdown }} Sekunden automatisch weitergeleitet . . .
   </div>
   <div class="button-wrapper">
-    <p-button
+    <button
+      pButton
+      class="custom-button"
       label="Auf dieser Seite bleiben"
       (click)="AbortRedirection()"
       [disabled]="!waitingForRedirect"
-    />
-    <p-button label="Zur Übersicht wechseln" (click)="RedirectToDashboard()" />
+    ></button>
+    <button
+      pButton
+      class="custom-button"
+      label="Zur Übersicht wechseln"
+      (click)="RedirectToDashboard()"
+    ></button>
   </div>
 </div>

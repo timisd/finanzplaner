@@ -1,3 +1,5 @@
+@import "src/colors";
+
 .message-wrapper {
   height: 100vh;
   display: flex;
@@ -13,7 +15,7 @@
   .red {
     color: red;
     font-size: 888%;
-    margin-right: 4vw;
+    margin-right: 3vw;
   }
 
   .error-message {
@@ -28,8 +30,23 @@
 
 .button-wrapper {
   margin-top: 1%;
+  display: flex;
 }
 
-p-button {
-  margin: 20px;
+.custom-button {
+  display: flex;
+  background-color: $accent-color;
+  color: $background-color;
+  border-color: $accent-color;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.custom-button:hover {
+  display: flex;
+  background-color: $text-color;
+  color: $accent-color;
+  border-color: $accent-color;
+  font-weight: bold;
+  margin-left: 15px;
 }
