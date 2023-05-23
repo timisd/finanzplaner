@@ -4,8 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DashboardPage, ExpensePage, IncomePage, NotFoundPage } from './pages';
-import { BalanceOverviewComponent, TitleBarComponent } from './components';
+import { DashboardPage, CashflowPage, NotFoundPage } from './pages';
+import {
+  BalanceOverviewComponent,
+  TitleBarComponent,
+  CashflowCardComponent,
+} from './components';
 
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
@@ -17,9 +21,9 @@ import { TooltipModule } from 'primeng/tooltip';
     DashboardPage,
     NotFoundPage,
     BalanceOverviewComponent,
-    IncomePage,
-    ExpensePage,
+    CashflowPage,
     TitleBarComponent,
+    CashflowCardComponent,
   ],
   imports: [
     BrowserModule,

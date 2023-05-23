@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./titleBar.component.scss'],
 })
 export class TitleBarComponent {
-  @Input() public pageName: string = '';
+  @Input() public pageName!: string;
   @Input() public showBackButton: boolean = false;
   @Input() public showAddButton: boolean = false;
 

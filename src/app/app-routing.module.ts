@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DashboardPage, ExpensePage, IncomePage, NotFoundPage } from './pages';
+import { DashboardPage, CashflowPage, NotFoundPage } from './pages';
 
 const routes: Routes = [
   { path: '', component: DashboardPage },
-  { path: 'einnahmen', component: IncomePage },
-  { path: 'ausgaben', component: ExpensePage },
+  { path: 'cashflow', component: CashflowPage },
   { path: '**', component: NotFoundPage },
 ];
 

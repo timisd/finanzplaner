@@ -1,0 +1,10 @@
+.card-wrapper {
+  height: calc(100vh - 155px); /* Adjust the margin-bottom value as needed */
+  margin: 2%;
+  overflow-y: auto;
+
+  .test {
+    background: black;
+    height: 9000px;
+  }
+}

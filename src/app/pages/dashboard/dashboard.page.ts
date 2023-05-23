@@ -26,11 +26,7 @@ export class DashboardPage {
     return dataSets;
   }
 
-  public navigateToIncomePage(): void {
-    this._router.navigate(['/einnahmen']);
-  }
-
-  public navigateToExpansePage(): void {
-    this._router.navigate(['/ausgaben']);
+  public navigateToCashflowPage(): void {
+    this._router.navigate(['/cashflow']);
   }
 }

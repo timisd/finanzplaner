@@ -1,0 +1,8 @@
+@import "src/colors";
+
+.card {
+  background-color: $text-color;
+  color: $background-color;
+  border-radius: 10px;
+  width: 50%;
+}

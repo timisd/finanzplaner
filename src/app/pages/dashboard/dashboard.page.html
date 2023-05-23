@@ -10,34 +10,18 @@
 
 <div class="cashflow">
   <div class="cashflow-column">
-    <div class="label">Einnahmen</div>
+    <div class="label">Einnahmen & Ausgaben</div>
     <button
       pButton
       icon="pi pi-search"
       pTooltip="Einnahme anzeigen"
       tooltipPosition="top"
-      (click)="navigateToIncomePage()"
+      (click)="navigateToCashflowPage()"
     ></button>
     <button
       pButton
       icon="pi pi-plus"
       pTooltip="Einnahme hinzufügen"
-      tooltipPosition="top"
-    ></button>
-  </div>
-  <div class="cashflow-column">
-    <div class="label">Ausgaben</div>
-    <button
-      pButton
-      icon="pi pi-search"
-      pTooltip="Ausgaben anzeigen"
-      tooltipPosition="top"
-      (click)="navigateToExpansePage()"
-    ></button>
-    <button
-      pButton
-      icon="pi pi-plus"
-      pTooltip="Ausgabe hinzufügen"
       tooltipPosition="top"
     ></button>
   </div>

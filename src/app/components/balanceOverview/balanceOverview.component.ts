@@ -8,7 +8,7 @@ import { BalanceDto } from '../../DTOs/balance.dto';
   styleUrls: ['./balanceOverview.component.scss'],
 })
 export class BalanceOverviewComponent implements OnInit {
-  @Input() public chartData: BalanceDto[] = [];
+  @Input() public chartData!: BalanceDto[];
 
   private _chart: any;
 
