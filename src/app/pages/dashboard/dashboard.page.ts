@@ -20,9 +20,7 @@ export class DashboardPage {
   }
 
   public getCurrentBalance(): string {
-    return this._balanceService.Balances[
-      this._balanceService.Balances.length - 1
-    ].FormattedBalance;
+    return this._balanceService.Balances.slice(-1)[0].FormattedBalance;
   }
 
   public getLastCashflows(): CashflowWrapper[] {
