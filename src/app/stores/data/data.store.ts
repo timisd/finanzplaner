@@ -1,68 +1,18 @@
 import { Injectable } from '@angular/core';
-import { BalanceWrapper, CashflowDto, CashflowWrapper } from '../../models';
+import { CashflowDto, CashflowWrapper } from '../../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataStore {
-  private _cashflows: CashflowWrapper[] = [];
+  public Cashflows: CashflowWrapper[] = [];
+  public CurrentBalance: number = 0;
   private _testDataAdded: boolean = false;
 
   constructor() {
     if (!this._testDataAdded) {
       this.addTestData();
     }
-  }
-
-  public setCashflows(cashflow: CashflowWrapper[]): void {
-    this._cashflows = cashflow;
-  }
-  public getCashflows(): CashflowWrapper[] {
-    return this._cashflows;
-  }
-
-  public updateCashflow(cashflow: CashflowWrapper): void {
-    const index = this._cashflows.findIndex(
-      (entry: CashflowWrapper) => entry.Id === cashflow.Id
-    );
-
-    if (index < 0) return;
-    this._cashflows[index] = cashflow;
-  }
-
-  public deleteCashflow(id: number): void {
-    const index = this._cashflows.findIndex(
-      (entry: CashflowWrapper) => entry.Id === id
-    );
-
-    if (index < 0) return;
-
-    this._cashflows.splice(index, 1);
-  }
-
-  public getBalance(): BalanceWrapper[] {
-    const balance: BalanceWrapper[] = [];
-    const sumByDate: Map<string, number> = new Map<string, number>();
-
-    this._cashflows.forEach((cashflow: CashflowWrapper) => {
-      const dateStr: string = cashflow.Date.toDateString();
-      const amount: number = cashflow.Amount;
-
-      if (sumByDate.has(dateStr)) {
-        const currentSum: number = sumByDate.get(dateStr)!;
-        sumByDate.set(dateStr, currentSum + amount);
-      } else {
-        sumByDate.set(dateStr, amount);
-      }
-    });
-
-    sumByDate.forEach((amount: number, date: string) => {
-      balance.push(
-        new BalanceWrapper({ Date: new Date(date), Balance: amount })
-      );
-    });
-
-    return balance;
   }
 
   private addTestData(): void {
@@ -88,14 +38,16 @@ export class DataStore {
         Tags: randomTags,
       };
 
-      this._cashflows.push(new CashflowWrapper(cashflow));
+      this.Cashflows.push(new CashflowWrapper(cashflow));
 
-      this._cashflows.sort((a: CashflowWrapper, b: CashflowWrapper) => {
+      this.Cashflows.sort((a: CashflowWrapper, b: CashflowWrapper) => {
         const dateA: Date = a.Date;
         const dateB: Date = b.Date;
 
         return dateA.getDate() - dateB.getDate();
       });
+
+      this.CurrentBalance = 5_000;
 
       this._testDataAdded = true;
     }

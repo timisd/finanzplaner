@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BalanceoverviewComponent } from './balanceOverview.component';
+import { BalanceOverviewComponent } from './balanceOverview.component';
 
 describe('BalanceOverviewComponent', () => {
-  let component: BalanceoverviewComponent;
-  let fixture: ComponentFixture<BalanceoverviewComponent>;
+  let component: BalanceOverviewComponent;
+  let fixture: ComponentFixture<BalanceOverviewComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BalanceoverviewComponent],
+      declarations: [BalanceOverviewComponent],
     });
-    fixture = TestBed.createComponent(BalanceoverviewComponent);
+    fixture = TestBed.createComponent(BalanceOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

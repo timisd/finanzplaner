@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataStore } from '../../stores';
 import { BalanceWrapper, CashflowWrapper } from '../../models';
+import { BalanceService, CashflowService } from '../../services';
 
 @Component({
   selector: 'app-page-dashboard',
@@ -9,24 +9,29 @@ import { BalanceWrapper, CashflowWrapper } from '../../models';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage {
-  constructor(private _router: Router, private _dataStore: DataStore) {}
+  constructor(
+    private _router: Router,
+    private _cashflowService: CashflowService,
+    private _balanceService: BalanceService
+  ) {}
 
   public getChartData(): BalanceWrapper[] {
-    return this._dataStore.getBalance();
+    return this._balanceService.Balances.slice(-30);
   }
 
   public getCurrentBalance(): string {
-    return this._dataStore.getBalance()[this._dataStore.getBalance().length - 1]
-      .FormattedBalance;
+    return this._balanceService.Balances[
+      this._balanceService.Balances.length - 1
+    ].FormattedBalance;
   }
 
   public getLastCashflows(): CashflowWrapper[] {
-    const index = this._dataStore.getCashflows().length - 8;
+    const index = this._cashflowService.Cashflows.length - 8;
 
-    return this._dataStore.getCashflows().slice(index).reverse();
+    return this._cashflowService.Cashflows.slice(index).reverse();
   }
 
   public navigateToCashflowPage(): void {
-    this._router.navigate(['/cashflow']);
+    this._router.navigate(['/cashflow']).then();
   }
 }
