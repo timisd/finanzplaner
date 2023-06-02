@@ -5,4 +5,63 @@
   color: $background-color;
   border-radius: 10px;
   margin: 2%;
+
+  .wrapper {
+    padding: 2%;
+
+    .table {
+      display: flex;
+
+      .column {
+        flex: 1;
+
+        .participant {
+          font-size: 200%;
+          font-weight: bold;
+        }
+
+        .date {
+          font-size: 150%;
+          margin: 2% 0 2% 0;
+        }
+      }
+
+      .centered {
+        display: flex;
+
+        justify-content: center;
+
+        .amount {
+          font-size: 300%;
+          font-weight: bold;
+        }
+
+        .income {
+          color: $income-color;
+        }
+
+        .spending {
+          color: $spending-color;
+        }
+      }
+    }
+
+    .tags-wrapper {
+      display: flex;
+      align-items: center;
+
+      .tag-lable {
+        margin-right: 1%;
+        font-size: 150%;
+      }
+
+      button {
+        background-color: $background-color;
+        color: $accent-color;
+        border-color: $background-color;
+        border-radius: 25px;
+        margin-right: 1%;
+      }
+    }
+  }
 }

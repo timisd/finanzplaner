@@ -1,6 +1,26 @@
 <div class="card">
-  <div class="participant">{{ data.Participant }}</div>
-  <div class="participant">{{ data.Date }}</div>
-  <div class="participant">{{ data.Amount }}</div>
-  <div class="participant">{{ data.Tags }}</div>
+  <div class="wrapper">
+    <div class="table">
+      <div class="column">
+        <div class="participant">{{ CashflowWrapper.Participant }}</div>
+        <div class="date">{{ CashflowWrapper.FormattedDate }}</div>
+      </div>
+      <div class="column centered">
+        <div *ngIf="data.IsIncome" class="amount income">
+          {{ CashflowWrapper.FormattedAmount }}
+        </div>
+        <div *ngIf="!data.IsIncome" class="amount spending">
+          {{ CashflowWrapper.FormattedAmount }}
+        </div>
+      </div>
+    </div>
+    <div class="tags-wrapper">
+      <div class="tag-lable">Tags:</div>
+      <button
+        pButton
+        *ngFor="let tag of CashflowWrapper.Tags"
+        label="{{ tag }}"
+      ></button>
+    </div>
+  </div>
 </div>

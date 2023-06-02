@@ -54,13 +54,28 @@ export class DataStore {
   }
 
   private generateRandomTags(): string[] {
-    const tags = ['Tag1', 'Tag2', 'Tag3', 'Tag4', 'Tag5'];
+    const tags = [
+      'Tag1',
+      'Tag2',
+      'Tag3',
+      'Tag4',
+      'Tag5',
+      'Tag6',
+      'Tag7',
+      'Tag8',
+      'Tag9',
+      'Tag10',
+    ];
     const randomTags: string[] = [];
-    const numTags = Math.floor(Math.random() * 4) + 1;
+    const numOfTags = Math.floor(Math.random() * 4) + 1;
 
-    for (let i = 0; i < numTags; i++) {
+    while (randomTags.length < numOfTags) {
       const randomIndex = Math.floor(Math.random() * tags.length);
-      randomTags.push(tags[randomIndex]);
+      const randomTag = tags[randomIndex];
+
+      if (!randomTags.includes(randomTag)) {
+        randomTags.push(randomTag);
+      }
     }
 
     return randomTags;

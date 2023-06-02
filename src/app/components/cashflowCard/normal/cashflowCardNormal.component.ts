@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CashflowDto } from '../../../models';
+import { CashflowDto, CashflowWrapper } from '../../../models';
 
 @Component({
   selector: 'app-cashflow-card-normal',
@@ -8,4 +8,8 @@ import { CashflowDto } from '../../../models';
 })
 export class CashflowCardNormalComponent {
   @Input() public data!: CashflowDto;
+
+  public get CashflowWrapper(): CashflowWrapper {
+    return new CashflowWrapper(this.data);
+  }
 }

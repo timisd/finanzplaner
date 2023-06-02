@@ -13,8 +13,14 @@ export class CashflowWrapper {
   public get Date(): Date {
     return this.dto.Date;
   }
-  public get DateFormatted(): string {
-    return this.dto.Date.toISOString();
+  public get FormattedDate(): string {
+    return this.dto.Date.toLocaleString('de-DE', {
+      hour: '2-digit',
+      minute: '2-digit',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
   }
   public get Amount(): number {
     return this.dto.Amount;
