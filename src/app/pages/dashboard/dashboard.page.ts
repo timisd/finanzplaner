@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CashflowService } from '../../services';
 import { DataStore } from '../../stores';
 import { BalanceWrapper, CashflowWrapper } from '../../models';
 
@@ -10,24 +9,15 @@ import { BalanceWrapper, CashflowWrapper } from '../../models';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage {
-  constructor(
-    private _cashflowService: CashflowService,
-    private _router: Router,
-    private _dataStore: DataStore
-  ) {}
+  constructor(private _router: Router, private _dataStore: DataStore) {}
 
   public getChartData(): BalanceWrapper[] {
     return this._dataStore.getBalance();
   }
 
   public getCurrentBalance(): string {
-    return this._dataStore
-      .getBalance()
-      [this._dataStore.getBalance().length - 1].getBalance()
-      .toLocaleString('de-DE', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
+    return this._dataStore.getBalance()[this._dataStore.getBalance().length - 1]
+      .FormattedBalance;
   }
 
   public getLastCashflows(): CashflowWrapper[] {

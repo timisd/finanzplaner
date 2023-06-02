@@ -23,7 +23,7 @@ export class DataStore {
 
   public updateCashflow(cashflow: CashflowWrapper): void {
     const index = this._cashflows.findIndex(
-      (entry: CashflowWrapper) => entry.getId() === cashflow.getId()
+      (entry: CashflowWrapper) => entry.Id === cashflow.Id
     );
 
     if (index < 0) return;
@@ -32,7 +32,7 @@ export class DataStore {
 
   public deleteCashflow(id: number): void {
     const index = this._cashflows.findIndex(
-      (entry: CashflowWrapper) => entry.getId() === id
+      (entry: CashflowWrapper) => entry.Id === id
     );
 
     if (index < 0) return;
@@ -45,8 +45,8 @@ export class DataStore {
     const sumByDate: Map<string, number> = new Map<string, number>();
 
     this._cashflows.forEach((cashflow: CashflowWrapper) => {
-      const dateStr: string = cashflow.getDate().toDateString();
-      const amount: number = cashflow.getAmount();
+      const dateStr: string = cashflow.Date.toDateString();
+      const amount: number = cashflow.Amount;
 
       if (sumByDate.has(dateStr)) {
         const currentSum: number = sumByDate.get(dateStr)!;
@@ -91,8 +91,8 @@ export class DataStore {
       this._cashflows.push(new CashflowWrapper(cashflow));
 
       this._cashflows.sort((a: CashflowWrapper, b: CashflowWrapper) => {
-        const dateA: Date = a.getDate();
-        const dateB: Date = b.getDate();
+        const dateA: Date = a.Date;
+        const dateB: Date = b.Date;
 
         return dateA.getDate() - dateB.getDate();
       });

@@ -1,12 +1,12 @@
 <div class="card">
   <div class="data">
-    <div class="participant">{{ data.getParticipant() }}</div>
-    <div class="day">{{ data.getDate() | date : "dd.MM.yyyy" }}</div>
+    <div class="participant">{{ data.Participant }}</div>
+    <div class="day">{{ data.DateFormatted }}</div>
   </div>
-  <div *ngIf="data.getIsIncome()" class="amount income">
-    {{ data.getFormattedAmount() }}
+  <div *ngIf="data.IsIncome" class="amount income">
+    {{ data.FormattedAmount }}
   </div>
-  <div *ngIf="!data.getIsIncome()" class="amount spending">
-    {{ data.getFormattedAmount() }}
+  <div *ngIf="!data.IsIncome" class="amount spending">
+    {{ data.FormattedAmount }}
   </div>
 </div>

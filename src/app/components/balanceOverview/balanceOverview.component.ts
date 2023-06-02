@@ -19,10 +19,10 @@ export class BalanceOverviewComponent implements OnInit {
     }
 
     const chartLabels: string[] = this.chartData.map(
-      (element: BalanceWrapper) => element.getDate().toDateString()
+      (element: BalanceWrapper) => element.Date.toDateString()
     );
     const chartValues: number[] = this.chartData.map(
-      (element: BalanceWrapper) => element.getBalance()
+      (element: BalanceWrapper) => element.Balance
     );
 
     const chartData = {

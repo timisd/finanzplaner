@@ -7,10 +7,19 @@ export class BalanceWrapper {
     this.dto = dto;
   }
 
-  public getDate(): Date {
+  public get Date(): Date {
     return this.dto.Date;
   }
-  public getBalance(): number {
+  public get Balance(): number {
     return this.dto.Balance;
+  }
+
+  public get FormattedBalance(): string {
+    const formattedAmount = Math.abs(this.dto.Balance).toLocaleString('de-DE', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
+    return `${this.dto.Balance >= 0 ? '+' : '-'}${formattedAmount} €`;
   }
 }

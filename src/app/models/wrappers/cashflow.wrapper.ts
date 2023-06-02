@@ -7,30 +7,33 @@ export class CashflowWrapper {
     this.dto = dto;
   }
 
-  public getId(): number {
+  public get Id(): number {
     return this.dto.Id;
   }
-  public getDate(): Date {
+  public get Date(): Date {
     return this.dto.Date;
   }
-  public getAmount(): number {
+  public get DateFormatted(): string {
+    return this.dto.Date.toISOString();
+  }
+  public get Amount(): number {
     return this.dto.Amount;
   }
-  public getFormattedAmount(): string {
+  public get FormattedAmount(): string {
     const formattedAmount = Math.abs(this.dto.Amount).toLocaleString('de-DE', {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     });
 
-    return `${this.dto.Amount >= 0 ? '+' : '-'} ${formattedAmount} €`;
+    return `${this.dto.Amount >= 0 ? '+' : '-'}${formattedAmount} €`;
   }
-  public getIsIncome(): boolean {
+  public get IsIncome(): boolean {
     return this.dto.IsIncome;
   }
-  public getParticipant(): string {
+  public get Participant(): string {
     return this.dto.Participant;
   }
-  public getTags(): Array<string> | undefined {
+  public get Tags(): Array<string> | undefined {
     return this.dto.Tags;
   }
 }
