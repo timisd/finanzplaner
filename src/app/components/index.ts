@@ -1,11 +1,4 @@
-import { BalanceOverviewComponent } from './balanceOverview/balanceOverview.component';
-import { TitleBarComponent } from './titleBar/titleBar.component';
-import { CashflowCardNormalComponent } from './cashflowCard/normal/cashflowCardNormal.component';
-import { CashflowCardSlimComponent } from './cashflowCard/slim/cashflowCardSlim.component';
-
-export {
-  BalanceOverviewComponent,
-  TitleBarComponent,
-  CashflowCardNormalComponent,
-  CashflowCardSlimComponent,
-};
+export * from './balanceOverview/balanceOverview.component';
+export * from './titleBar/titleBar.component';
+export * from './cashflowCard/normal/cashflowCardNormal.component';
+export * from './cashflowCard/slim/cashflowCardSlim.component';

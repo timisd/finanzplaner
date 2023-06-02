@@ -1,6 +1,4 @@
-import { BalanceDto } from './dtos/balance.dto';
-import { CashflowDto } from './dtos/cashflow.dto';
-import { BalanceWrapper } from './wrappers/balance.wrapper';
-import { CashflowWrapper } from './wrappers/cashflow.wrapper';
-
-export { CashflowDto, BalanceDto, CashflowWrapper, BalanceWrapper };
+export * from './dtos/balance.dto';
+export * from './dtos/cashflow.dto';
+export * from './wrappers/balance.wrapper';
+export * from './wrappers/cashflow.wrapper';
