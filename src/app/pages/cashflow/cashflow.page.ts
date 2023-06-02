@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CashflowDto } from '../../models';
+import { CashflowService } from '../../services';
 
 @Component({
   selector: 'app-cashflow',
@@ -7,132 +8,16 @@ import { CashflowDto } from '../../models';
   styleUrls: ['./cashflow.page.scss'],
 })
 export class CashflowPage {
-  public cashflowData: CashflowDto[] = [
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-    {
-      Id: 1_000,
-      Date: new Date(),
-      Amount: 500,
-      IsIncome: true,
-      Participant: 'Hans Wurst',
-    },
-  ];
+  private _cashflowCache: CashflowDto[];
+  constructor(private _cashflowService: CashflowService) {
+    this._cashflowCache = this._cashflowService.Cashflows;
+  }
+
+  public get incomeData(): CashflowDto[] {
+    return this._cashflowCache.filter((dto: CashflowDto) => dto.IsIncome);
+  }
+
+  public get spendingData(): CashflowDto[] {
+    return this._cashflowCache.filter((dto: CashflowDto) => !dto.IsIncome);
+  }
 }

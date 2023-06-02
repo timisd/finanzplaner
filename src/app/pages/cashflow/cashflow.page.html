@@ -20,7 +20,7 @@
     <div class="column-header">Einnahmen</div>
     <div class="card-wrapper">
       <app-cashflow-card-normal
-        *ngFor="let cashflow of cashflowData"
+        *ngFor="let cashflow of incomeData"
         [data]="cashflow"
       />
     </div>
@@ -29,7 +29,7 @@
     <div class="column-header">Ausgaben</div>
     <div class="card-wrapper">
       <app-cashflow-card-normal
-        *ngFor="let cashflow of cashflowData"
+        *ngFor="let cashflow of spendingData"
         [data]="cashflow"
       />
     </div>
