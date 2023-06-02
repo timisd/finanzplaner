@@ -1,10 +1,61 @@
-.card-wrapper {
-  height: calc(100vh - 155px); /* Adjust the margin-bottom value as needed */
-  margin: 2%;
-  overflow-y: auto;
+@import "../../../colors";
 
-  .test {
-    background: black;
-    height: 9000px;
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+
+  .search-input-wrapper {
+    position: relative;
+    width: 50vw;
+
+    .search-input {
+      padding: 8px 40px 8px 20px;
+      width: 100%;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      font-size: 30px;
+      color: $background-color;
+    }
+
+    .search-button {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+    }
+
+    button {
+      height: 100%;
+      width: 5%;
+      background-color: $accent-color;
+      color: $background-color;
+      border-color: $accent-color;
+      font-weight: bold;
+      border-radius: 50px;
+    }
+  }
+}
+
+.cashflow-overview {
+  display: flex;
+
+  .column {
+    flex: 1;
+
+    .column-header {
+      text-align: center;
+      font-size: 175%;
+      font-weight: bold;
+      text-shadow: 0 0 10px $accent-color;
+      margin-bottom: 1%;
+    }
+
+    .card-wrapper {
+      height: 80vh;
+      overflow-y: auto;
+    }
   }
 }

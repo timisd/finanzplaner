@@ -1,8 +1,8 @@
 @import "../../../../colors";
 
 .card {
-  background-color: $text-color;
+  background-image: linear-gradient(to bottom, $text-color, $accent-color);
   color: $background-color;
   border-radius: 10px;
-  width: 50%;
+  margin: 2%;
 }

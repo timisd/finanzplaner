@@ -4,6 +4,34 @@
   [showAddButton]="true"
 />
 
-<div class="card-wrapper">
-  <app-cashflow-card-normal [data]="cashflowData" />
+<div class="search-bar">
+  <div class="search-input-wrapper">
+    <input
+      type="text"
+      placeholder="Gib einen Suchbegriff ein..."
+      class="search-input"
+    />
+    <button pButton icon="pi pi-search" class="search-button"></button>
+  </div>
+</div>
+
+<div class="cashflow-overview">
+  <div class="column">
+    <div class="column-header">Einnahmen</div>
+    <div class="card-wrapper">
+      <app-cashflow-card-normal
+        *ngFor="let cashflow of cashflowData"
+        [data]="cashflow"
+      />
+    </div>
+  </div>
+  <div class="column">
+    <div class="column-header">Ausgaben</div>
+    <div class="card-wrapper">
+      <app-cashflow-card-normal
+        *ngFor="let cashflow of cashflowData"
+        [data]="cashflow"
+      />
+    </div>
+  </div>
 </div>
