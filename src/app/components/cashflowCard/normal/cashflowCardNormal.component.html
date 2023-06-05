@@ -1,5 +1,16 @@
 <div class="card">
   <div class="wrapper">
+    <div class="dropdown">
+      <button class="dropdown-button">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </button>
+      <div class="dropdown-content">
+        <a (click)="editEntry()">Editieren</a>
+        <a class="delete" (click)="deleteEntry()">Löschen</a>
+      </div>
+    </div>
     <div class="table">
       <div class="column">
         <div class="participant">{{ CashflowWrapper.Participant }}</div>

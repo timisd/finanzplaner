@@ -23,4 +23,18 @@ export class CashflowService {
       return result;
     }, new Map<string, CashflowDto[]>());
   }
+
+  public deleteCashflow(id: number): boolean {
+    const index = this.Cashflows.findIndex(
+      (value: CashflowWrapper) => value.Id === id
+    );
+
+    if (index === -1) {
+      return false;
+    }
+
+    this._dataStore.Cashflows.splice(index, 1);
+
+    return true;
+  }
 }
