@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CashflowWrapper } from '../../models';
 import { CashflowService } from '../../services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cashflow-dialog',
@@ -19,6 +20,7 @@ export class CashflowDialogComponent {
     private _dialogRef: MatDialogRef<CashflowDialogComponent>,
     private _fb: FormBuilder,
     private _cashflowService: CashflowService,
+    private _toast: ToastrService,
     @Inject(MAT_DIALOG_DATA) public cashflowData: CashflowWrapper
   ) {
     const localOffset = new Date().getTimezoneOffset() * 60000;
@@ -65,7 +67,17 @@ export class CashflowDialogComponent {
             : this.cashflowData.Tags,
       });
 
-      this._cashflowService.updateCashflow(newCashflowWrapper);
+      if (this._cashflowService.updateCashflow(newCashflowWrapper)) {
+        this._toast.success(
+          newCashflowWrapper.toString(),
+          'Update war erfolgreich'
+        );
+      } else {
+        this._toast.error(
+          newCashflowWrapper.toString(),
+          'Update konnte nicht durchgeführt werden'
+        );
+      }
     }
 
     this._dialogRef.close();
