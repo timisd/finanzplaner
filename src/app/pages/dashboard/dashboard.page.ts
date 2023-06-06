@@ -24,9 +24,11 @@ export class DashboardPage {
   }
 
   public getLastCashflows(): CashflowWrapper[] {
-    const index = this._cashflowService.Cashflows.length - 8;
+    const index = this._cashflowService.CashflowsOrderedByDateASC.length - 8;
 
-    return this._cashflowService.Cashflows.slice(index).reverse();
+    return this._cashflowService.CashflowsOrderedByDateASC.slice(
+      index
+    ).reverse();
   }
 
   public navigateToCashflowPage(): void {

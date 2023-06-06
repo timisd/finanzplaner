@@ -10,6 +10,7 @@ import {
   TitleBarComponent,
   CashflowCardNormalComponent,
   CashflowCardSlimComponent,
+  CashflowDialogComponent,
 } from './components';
 
 import { ButtonModule } from 'primeng/button';
@@ -17,6 +18,8 @@ import { RippleModule } from 'primeng/ripple';
 import { TooltipModule } from 'primeng/tooltip';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TitleBarComponent,
     CashflowCardNormalComponent,
     CashflowCardSlimComponent,
+    CashflowDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RippleModule,
     TooltipModule,
     BrowserAnimationsModule,
+    MatDialogModule,
     ToastrModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

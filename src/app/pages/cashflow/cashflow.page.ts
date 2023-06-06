@@ -10,9 +10,7 @@ import { CashflowService } from '../../services';
 export class CashflowPage {
   private _cashflowCache: CashflowDto[];
   constructor(private _cashflowService: CashflowService) {
-    this._cashflowCache = this._cashflowService.Cashflows.sort(
-      (a, b) => b.Date.getTime() - a.Date.getTime()
-    );
+    this._cashflowCache = this._cashflowService.CashflowsOrderedByDateDES;
   }
 
   public get incomeData(): CashflowDto[] {

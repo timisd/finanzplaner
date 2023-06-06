@@ -8,14 +8,28 @@ import { CashflowDto, CashflowWrapper } from '../../models';
 export class CashflowService {
   constructor(private _dataStore: DataStore) {}
 
-  public get Cashflows(): CashflowWrapper[] {
+  public get CashflowsUnsorted(): CashflowWrapper[] {
+    return this._dataStore.Cashflows;
+  }
+
+  public get CashflowsOrderedByDateASC(): CashflowWrapper[] {
     return this._dataStore.Cashflows.sort(
       (a, b) => a.Date.getTime() - b.Date.getTime()
     );
   }
 
+  public get CashflowsOrderedByDateDES(): CashflowWrapper[] {
+    return this._dataStore.Cashflows.sort(
+      (a, b) => b.Date.getTime() - a.Date.getTime()
+    );
+  }
+
+  public get CashflowsOrderedById(): CashflowWrapper[] {
+    return this._dataStore.Cashflows.sort((a, b) => a.Id - b.Id);
+  }
+
   public get CashflowsPerDay(): Map<string, CashflowDto[]> {
-    return this.Cashflows.reduce((result, cashflow) => {
+    return this.CashflowsOrderedByDateASC.reduce((result, cashflow) => {
       const key = cashflow.Date.toDateString();
       const values = result.get(key) || [];
       values.push(cashflow);
@@ -25,7 +39,7 @@ export class CashflowService {
   }
 
   public deleteCashflow(id: number): boolean {
-    const index = this.Cashflows.findIndex(
+    const index = this.CashflowsUnsorted.findIndex(
       (value: CashflowWrapper) => value.Id === id
     );
 
@@ -34,6 +48,23 @@ export class CashflowService {
     }
 
     this._dataStore.Cashflows.splice(index, 1);
+
+    return true;
+  }
+
+  public updateCashflow(newCashflow: CashflowWrapper): boolean {
+    const index = this.CashflowsUnsorted.findIndex(
+      (value: CashflowWrapper) => value.Id === newCashflow.Id
+    );
+
+    if (index === -1) {
+      return false;
+    }
+
+    console.info('before', this._dataStore.Cashflows);
+    console.info('index', index);
+    this._dataStore.Cashflows[index] = newCashflow;
+    console.info('after', this._dataStore.Cashflows);
 
     return true;
   }

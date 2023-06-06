@@ -30,7 +30,7 @@ export class DataStore {
       const randomTags = this.generateRandomTags();
 
       const cashflow: CashflowDto = {
-        Id: i + 1,
+        Id: i,
         Date: randomDate,
         Amount: randomAmount,
         IsIncome: randomAmount > 0,

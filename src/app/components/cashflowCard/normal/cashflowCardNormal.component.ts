@@ -2,6 +2,8 @@ import { Component, Input } from '@angular/core';
 import { CashflowDto, CashflowWrapper } from '../../../models';
 import { CashflowService } from '../../../services';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { CashflowDialogComponent } from '../../cashflowDialog/cashflowDialog.component';
 
 @Component({
   selector: 'app-cashflow-card-normal',
@@ -13,7 +15,8 @@ export class CashflowCardNormalComponent {
 
   constructor(
     private _cashflowService: CashflowService,
-    private _toast: ToastrService
+    private _toast: ToastrService,
+    private _cashflowDialog: MatDialog
   ) {}
 
   public get CashflowWrapper(): CashflowWrapper {
@@ -22,6 +25,9 @@ export class CashflowCardNormalComponent {
 
   public editEntry(): void {
     console.info('edit', this.CashflowWrapper);
+    this._cashflowDialog.open(CashflowDialogComponent, {
+      data: this.CashflowWrapper,
+    });
   }
 
   public deleteEntry(): void {
