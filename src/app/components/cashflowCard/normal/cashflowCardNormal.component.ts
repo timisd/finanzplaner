@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CashflowDto, CashflowWrapper } from '../../../models';
 import { CashflowService } from '../../../services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cashflow-card-normal',
@@ -10,7 +11,10 @@ import { CashflowService } from '../../../services';
 export class CashflowCardNormalComponent {
   @Input() public data!: CashflowDto;
 
-  constructor(private _cashflowService: CashflowService) {}
+  constructor(
+    private _cashflowService: CashflowService,
+    private _toast: ToastrService
+  ) {}
 
   public get CashflowWrapper(): CashflowWrapper {
     return new CashflowWrapper(this.data);
@@ -22,9 +26,15 @@ export class CashflowCardNormalComponent {
 
   public deleteEntry(): void {
     if (this._cashflowService.deleteCashflow(this.CashflowWrapper.Id)) {
-      console.info('successfully removed', this.CashflowWrapper);
+      this._toast.success(
+        this.CashflowWrapper.toString(),
+        'Eintrag erfolgreich gelöscht'
+      );
     } else {
-      console.info('failed to remove', this.CashflowWrapper);
+      this._toast.error(
+        this.CashflowWrapper.toString(),
+        'Eintrag konnte nicht gelöscht werden'
+      );
     }
   }
 }

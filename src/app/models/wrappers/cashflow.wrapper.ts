@@ -42,4 +42,8 @@ export class CashflowWrapper {
   public get Tags(): Array<string> | undefined {
     return this.dto.Tags;
   }
+
+  public toString(): string {
+    return `ID: ${this.Id} | Datum: ${this.FormattedDate} | Sender/Empfänger: ${this.Participant} | Betrag: ${this.FormattedAmount} | Tags: ${this.Tags}`;
+  }
 }
