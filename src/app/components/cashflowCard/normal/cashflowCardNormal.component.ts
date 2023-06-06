@@ -24,7 +24,6 @@ export class CashflowCardNormalComponent {
   }
 
   public editEntry(): void {
-    console.info('edit', this.CashflowWrapper);
     this._cashflowDialog.open(CashflowDialogComponent, {
       data: this.CashflowWrapper,
     });

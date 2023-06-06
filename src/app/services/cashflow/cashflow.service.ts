@@ -61,10 +61,13 @@ export class CashflowService {
       return false;
     }
 
-    console.info('before', this._dataStore.Cashflows);
-    console.info('index', index);
     this._dataStore.Cashflows[index] = newCashflow;
-    console.info('after', this._dataStore.Cashflows);
+
+    return true;
+  }
+
+  public addCashflow(newCashflow: CashflowWrapper): boolean {
+    this._dataStore.Cashflows.push(newCashflow);
 
     return true;
   }

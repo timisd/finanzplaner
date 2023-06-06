@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./cashflowDialog.component.scss'],
 })
 export class CashflowDialogComponent {
-  public title: string = 'Test';
+  public title: string = this.cashflowData ? 'Bearbeiten' : 'Hinzufügen';
 
   public form!: FormGroup;
 
@@ -25,7 +25,7 @@ export class CashflowDialogComponent {
   ) {
     const localOffset = new Date().getTimezoneOffset() * 60000;
     const adjustedDate = new Date(
-      this.cashflowData.Date.getTime() - localOffset
+      this.cashflowData?.Date.getTime() - localOffset
     );
 
     this.form = this._fb.group({
@@ -41,7 +41,7 @@ export class CashflowDialogComponent {
         this.cashflowData ? this.cashflowData.Amount : null,
         Validators.required,
       ],
-      tags: [this.cashflowData ? this.cashflowData.Tags : this.getCurrentId()],
+      tags: [this.cashflowData ? this.cashflowData.Tags : null],
     });
   }
 
@@ -50,23 +50,28 @@ export class CashflowDialogComponent {
   }
 
   public submit(): void {
-    if (this.form.valid) {
-      const formData = this.form.value;
-      const newCashflowWrapper = new CashflowWrapper({
-        Id: this.getId(),
-        Date:
-          typeof formData.datetime === 'string'
-            ? new Date(formData.datetime)
-            : this.cashflowData.Date,
-        Amount: formData.amount,
-        IsIncome: formData.amount > 0,
-        Participant: formData.participant,
-        Tags:
-          typeof formData.tags === 'string'
-            ? formData.tags.split(',')
-            : this.cashflowData.Tags,
-      });
+    if (!this.form.valid) return;
 
+    const formData = this.form.value;
+    const tagData =
+      typeof formData.tags === 'string'
+        ? formData.tags.split(',')
+        : this.cashflowData
+        ? this.cashflowData.Tags
+        : null;
+    const newCashflowWrapper = new CashflowWrapper({
+      Id: this.getId(),
+      Date:
+        typeof formData.datetime === 'string'
+          ? new Date(formData.datetime)
+          : this.cashflowData.Date,
+      Amount: formData.amount,
+      IsIncome: formData.amount > 0,
+      Participant: formData.participant,
+      Tags: tagData,
+    });
+
+    if (this.cashflowData) {
       if (this._cashflowService.updateCashflow(newCashflowWrapper)) {
         this._toast.success(
           newCashflowWrapper.toString(),
@@ -76,6 +81,18 @@ export class CashflowDialogComponent {
         this._toast.error(
           newCashflowWrapper.toString(),
           'Update konnte nicht durchgeführt werden'
+        );
+      }
+    } else {
+      if (this._cashflowService.addCashflow(newCashflowWrapper)) {
+        this._toast.success(
+          newCashflowWrapper.toString(),
+          'Hinzufügen war erfolgreich'
+        );
+      } else {
+        this._toast.error(
+          newCashflowWrapper.toString(),
+          'Es konnte nicht hinzugefügt werden'
         );
       }
     }

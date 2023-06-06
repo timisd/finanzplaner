@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CashflowDialogComponent } from '../cashflowDialog/cashflowDialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-titleBar',
@@ -11,14 +13,12 @@ export class TitleBarComponent {
   @Input() public showBackButton: boolean = false;
   @Input() public showAddButton: boolean = false;
 
-  @Output() public addButtonClicked: EventEmitter<void> =
-    new EventEmitter<void>();
-
   public addButtonToolTip: string;
 
   constructor(
     private _router: Router,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _cashflowDialog: MatDialog
   ) {
     const route: string = this._activatedRoute.snapshot.url.join('/');
 
@@ -33,5 +33,9 @@ export class TitleBarComponent {
 
   public navigateBackToDashboard(): void {
     this._router.navigate(['']);
+  }
+
+  public addNewCashflow(): void {
+    this._cashflowDialog.open(CashflowDialogComponent);
   }
 }

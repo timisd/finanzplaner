@@ -3,13 +3,18 @@
   <div class="title">{{ title }}</div>
   <form class="form" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-attribut-wrapper">
-      <label for="name">ID: </label>
+      <label for="id">ID: </label>
       <input type="text" id="id" [value]="getId()" disabled />
     </div>
 
     <div class="form-attribut-wrapper">
-      <label for="name">Sender / Empfänger: </label>
-      <input type="text" id="name" formControlName="participant" required />
+      <label for="participant">Sender / Empfänger: </label>
+      <input
+        type="text"
+        id="participant"
+        formControlName="participant"
+        required
+      />
     </div>
 
     <div class="form-attribut-wrapper">
@@ -38,12 +43,7 @@
       <input type="text" id="tags" formControlName="tags" />
     </div>
 
-    <button
-      pButton
-      label="Speichern"
-      (click)="submit()"
-      [disabled]="form.pristine"
-    ></button>
+    <button pButton label="Speichern"></button>
   </form>
   <div class="bottom">
     <button pButton icon="pi pi-times" (click)="abort()"></button>
