@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { CashflowDto, CashflowWrapper } from '../../models';
+import { CashflowDto } from '../../models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataStore {
-  public Cashflows: CashflowWrapper[] = [];
+  public Cashflows: CashflowDto[] = [];
   public CurrentBalance: number = 0;
   private _testDataAdded: boolean = false;
 
@@ -38,9 +38,9 @@ export class DataStore {
         Tags: randomTags,
       };
 
-      this.Cashflows.push(new CashflowWrapper(cashflow));
+      this.Cashflows.push(cashflow);
 
-      this.Cashflows.sort((a: CashflowWrapper, b: CashflowWrapper) => {
+      this.Cashflows.sort((a: CashflowDto, b: CashflowDto) => {
         const dateA: Date = a.Date;
         const dateB: Date = b.Date;
 

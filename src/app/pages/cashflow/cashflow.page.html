@@ -1,17 +1,24 @@
 <app-titleBar
-  pageName="Cashflow"
-  [showBackButton]="true"
   [showAddButton]="true"
+  [showBackButton]="true"
+  pageName="Cashflow"
 />
 
 <div class="search-bar">
   <div class="search-input-wrapper">
     <input
-      type="text"
-      placeholder="Gib einen Suchbegriff ein..."
+      (input)="onInputChanged($event)"
+      [(ngModel)]="searchInput"
       class="search-input"
+      placeholder="Gib einen Suchbegriff ein..."
+      type="text"
     />
-    <button pButton icon="pi pi-search" class="search-button"></button>
+    <button
+      (click)="filterValues()"
+      class="search-button"
+      icon="pi pi-search"
+      pButton
+    ></button>
   </div>
 </div>
 
@@ -19,19 +26,23 @@
   <div class="column">
     <div class="column-header">Einnahmen</div>
     <div class="card-wrapper">
-      <app-cashflow-card-normal
-        *ngFor="let cashflow of incomeData"
-        [data]="cashflow"
-      />
+      <ng-container *ngFor="let cashflow of incomeData">
+        <app-cashflow-card-normal
+          (tagButtonClick)="tagButtonClicked($event)"
+          [data]="cashflow"
+        />
+      </ng-container>
     </div>
   </div>
   <div class="column">
     <div class="column-header">Ausgaben</div>
     <div class="card-wrapper">
-      <app-cashflow-card-normal
-        *ngFor="let cashflow of spendingData"
-        [data]="cashflow"
-      />
+      <ng-container *ngFor="let cashflow of spendingData">
+        <app-cashflow-card-normal
+          (tagButtonClick)="tagButtonClicked($event)"
+          [data]="cashflow"
+        />
+      </ng-container>
     </div>
   </div>
 </div>

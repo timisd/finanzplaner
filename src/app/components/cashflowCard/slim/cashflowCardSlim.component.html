@@ -1,12 +1,12 @@
 <div class="card">
   <div class="data">
-    <div class="participant">{{ data.Participant }}</div>
-    <div class="day">{{ data.FormattedDate }}</div>
+    <div class="participant">{{ wrapper.Participant }}</div>
+    <div class="day">{{ wrapper.FormattedDate }}</div>
   </div>
   <div *ngIf="data.IsIncome" class="amount income">
-    {{ data.FormattedAmount }}
+    {{ wrapper.FormattedAmount }}
   </div>
   <div *ngIf="!data.IsIncome" class="amount spending">
-    {{ data.FormattedAmount }}
+    {{ wrapper.FormattedAmount }}
   </div>
 </div>

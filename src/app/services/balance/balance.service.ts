@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataStore } from '../../stores';
-import { BalanceWrapper } from '../../models';
+import { BalanceDto } from '../../models';
 import { CashflowService } from '../cashflow/cashflow.service';
 
 @Injectable({
@@ -12,8 +12,8 @@ export class BalanceService {
     private _cashflowService: CashflowService
   ) {}
 
-  public get Balances(): BalanceWrapper[] {
-    const balances: BalanceWrapper[] = [];
+  public get Balances(): BalanceDto[] {
+    const balances: BalanceDto[] = [];
 
     let previousCumulativeAmount = this._dataStore.CurrentBalance;
 
@@ -27,12 +27,10 @@ export class BalanceService {
 
       const updatedCumulativeAmount =
         previousCumulativeAmount + cumulativeAmount;
-      balances.push(
-        new BalanceWrapper({
-          Date: currentDate,
-          Balance: updatedCumulativeAmount,
-        })
-      );
+      balances.push({
+        Date: currentDate,
+        Balance: updatedCumulativeAmount,
+      });
 
       previousCumulativeAmount = updatedCumulativeAmount;
     }

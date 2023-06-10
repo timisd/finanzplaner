@@ -4,13 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { DashboardPage, CashflowPage, NotFoundPage } from './pages';
+import { CashflowPage, DashboardPage, NotFoundPage } from './pages';
 import {
   BalanceOverviewComponent,
-  TitleBarComponent,
   CashflowCardNormalComponent,
   CashflowCardSlimComponent,
   CashflowDialogComponent,
+  TitleBarComponent,
 } from './components';
 
 import { ButtonModule } from 'primeng/button';
@@ -19,7 +19,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

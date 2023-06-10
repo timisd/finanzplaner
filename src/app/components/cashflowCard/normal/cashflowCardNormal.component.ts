@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CashflowDto, CashflowWrapper } from '../../../models';
 import { CashflowService } from '../../../services';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,7 @@ import { CashflowDialogComponent } from '../../cashflowDialog/cashflowDialog.com
 })
 export class CashflowCardNormalComponent {
   @Input() public data!: CashflowDto;
+  @Output() tagButtonClick: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private _cashflowService: CashflowService,
@@ -41,5 +42,9 @@ export class CashflowCardNormalComponent {
         'Eintrag konnte nicht gelöscht werden'
       );
     }
+  }
+
+  public tagButtonClicked(tag: string): void {
+    this.tagButtonClick.emit(tag);
   }
 }

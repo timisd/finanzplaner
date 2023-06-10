@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DataStore } from '../../stores';
-import { CashflowDto, CashflowWrapper } from '../../models';
+import { CashflowDto } from '../../models';
 
 @Injectable({
   providedIn: 'root',
@@ -8,23 +8,23 @@ import { CashflowDto, CashflowWrapper } from '../../models';
 export class CashflowService {
   constructor(private _dataStore: DataStore) {}
 
-  public get CashflowsUnsorted(): CashflowWrapper[] {
+  public get CashflowsUnsorted(): CashflowDto[] {
     return this._dataStore.Cashflows;
   }
 
-  public get CashflowsOrderedByDateASC(): CashflowWrapper[] {
+  public get CashflowsOrderedByDateASC(): CashflowDto[] {
     return this._dataStore.Cashflows.sort(
       (a, b) => a.Date.getTime() - b.Date.getTime()
     );
   }
 
-  public get CashflowsOrderedByDateDES(): CashflowWrapper[] {
+  public get CashflowsOrderedByDateDES(): CashflowDto[] {
     return this._dataStore.Cashflows.sort(
       (a, b) => b.Date.getTime() - a.Date.getTime()
     );
   }
 
-  public get CashflowsOrderedById(): CashflowWrapper[] {
+  public get CashflowsOrderedById(): CashflowDto[] {
     return this._dataStore.Cashflows.sort((a, b) => a.Id - b.Id);
   }
 
@@ -40,7 +40,7 @@ export class CashflowService {
 
   public deleteCashflow(id: number): boolean {
     const index = this.CashflowsUnsorted.findIndex(
-      (value: CashflowWrapper) => value.Id === id
+      (value: CashflowDto) => value.Id === id
     );
 
     if (index === -1) {
@@ -52,9 +52,9 @@ export class CashflowService {
     return true;
   }
 
-  public updateCashflow(newCashflow: CashflowWrapper): boolean {
+  public updateCashflow(newCashflow: CashflowDto): boolean {
     const index = this.CashflowsUnsorted.findIndex(
-      (value: CashflowWrapper) => value.Id === newCashflow.Id
+      (value: CashflowDto) => value.Id === newCashflow.Id
     );
 
     if (index === -1) {
@@ -66,7 +66,7 @@ export class CashflowService {
     return true;
   }
 
-  public addCashflow(newCashflow: CashflowWrapper): boolean {
+  public addCashflow(newCashflow: CashflowDto): boolean {
     this._dataStore.Cashflows.push(newCashflow);
 
     return true;
