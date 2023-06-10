@@ -28,6 +28,7 @@
     <div class="card-wrapper">
       <ng-container *ngFor="let cashflow of incomeData">
         <app-cashflow-card-normal
+          (dataChanged)="dataChanged()"
           (tagButtonClick)="tagButtonClicked($event)"
           [data]="cashflow"
         />

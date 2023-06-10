@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CashflowWrapper } from '../../models';
 import { CashflowService } from '../../services';
 import { ToastrService } from 'ngx-toastr';
@@ -46,7 +45,7 @@ export class CashflowDialogComponent {
   }
 
   public abort(): void {
-    this._dialogRef.close();
+    this._dialogRef.close(false);
   }
 
   public submit(): void {
@@ -97,7 +96,7 @@ export class CashflowDialogComponent {
       }
     }
 
-    this._dialogRef.close();
+    this._dialogRef.close(true);
   }
 
   public getId(): number {

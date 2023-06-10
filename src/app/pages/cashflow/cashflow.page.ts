@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { CashflowDto } from '../../models';
 import { FilterService } from '../../services';
 
@@ -12,7 +12,10 @@ export class CashflowPage {
   public spendingData: CashflowDto[] = [];
   public searchInput: string = '';
 
-  constructor(private _filterService: FilterService) {
+  constructor(
+    private _filterService: FilterService,
+    private _cdr: ChangeDetectorRef
+  ) {
     this.filterValues();
   }
 
@@ -26,6 +29,10 @@ export class CashflowPage {
 
   public tagButtonClicked(tag: string): void {
     this.searchInput = tag;
+    this.filterValues();
+  }
+
+  public dataChanged(): void {
     this.filterValues();
   }
 

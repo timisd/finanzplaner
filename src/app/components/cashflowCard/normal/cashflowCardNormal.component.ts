@@ -13,6 +13,7 @@ import { CashflowDialogComponent } from '../../cashflowDialog/cashflowDialog.com
 export class CashflowCardNormalComponent {
   @Input() public data!: CashflowDto;
   @Output() tagButtonClick: EventEmitter<string> = new EventEmitter<string>();
+  @Output() dataChanged: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private _cashflowService: CashflowService,
@@ -25,9 +26,16 @@ export class CashflowCardNormalComponent {
   }
 
   public editEntry(): void {
-    this._cashflowDialog.open(CashflowDialogComponent, {
-      data: this.CashflowWrapper,
-    });
+    this._cashflowDialog
+      .open(CashflowDialogComponent, {
+        data: this.CashflowWrapper,
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) {
+          this.dataChanged.emit();
+        }
+      });
   }
 
   public deleteEntry(): void {
@@ -42,6 +50,8 @@ export class CashflowCardNormalComponent {
         'Eintrag konnte nicht gelöscht werden'
       );
     }
+
+    this.dataChanged.emit();
   }
 
   public tagButtonClicked(tag: string): void {
