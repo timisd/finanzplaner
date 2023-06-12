@@ -1,51 +1,51 @@
 <div class="overlay"></div>
 <div class="wrapper">
   <div class="title">{{ title }}</div>
-  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <form (ngSubmit)="submit()" [formGroup]="form" class="form">
     <div class="form-attribut-wrapper">
       <label for="id">ID: </label>
-      <input type="text" id="id" [value]="getId()" disabled />
+      <input [value]="getId()" disabled id="id" type="text" />
     </div>
 
     <div class="form-attribut-wrapper">
       <label for="participant">Sender / Empfänger: </label>
       <input
-        type="text"
-        id="participant"
         formControlName="participant"
+        id="participant"
         required
+        type="text"
       />
     </div>
 
     <div class="form-attribut-wrapper">
       <label for="datetime">Datum: </label>
       <input
-        type="datetime-local"
-        id="datetime"
         formControlName="datetime"
+        id="datetime"
         required
+        type="datetime-local"
       />
     </div>
 
     <div class="form-attribut-wrapper">
       <label for="amount">Betrag: </label>
       <input
-        type="number"
-        id="amount"
         formControlName="amount"
-        step="0.01"
+        id="amount"
         required
+        step="0.01"
+        type="number"
       />
     </div>
 
     <div class="form-attribut-wrapper">
       <label for="tags">Tags: </label>
-      <input type="text" id="tags" formControlName="tags" />
+      <input formControlName="tags" id="tags" type="text" />
     </div>
 
-    <button pButton label="Speichern"></button>
+    <button [disabled]="!form.valid" label="Speichern" pButton></button>
   </form>
   <div class="bottom">
-    <button pButton icon="pi pi-times" (click)="abort()"></button>
+    <button (click)="abort()" icon="pi pi-times" pButton></button>
   </div>
 </div>

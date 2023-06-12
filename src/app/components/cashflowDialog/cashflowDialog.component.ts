@@ -49,8 +49,6 @@ export class CashflowDialogComponent {
   }
 
   public submit(): void {
-    if (!this.form.valid) return;
-
     const formData = this.form.value;
     const tagData =
       typeof formData.tags === 'string'
