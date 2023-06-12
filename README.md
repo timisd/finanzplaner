@@ -1,27 +1,26 @@
 # Finanzplaner
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
+Das Project wurde mit [Angular CLI](https://github.com/angular/angular-cli) Version 16.0.0 erstellt.
 
-## Development server
+## Seite Local hosten
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. ``npm install`` oder ``npm i`` um alle Abhängigkeiten zu installieren oder zu aktualisieren
+2. ``ng serve`` oder ``ng s`` um den Server auf `http://localhost:4200/` zu starten.
 
-## Code scaffolding
+- es ist auch möglich die Seite direkt öffnen zulassen über den Befehl ``ng s --o``
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Genutzte Abhängigkeiten von Dritten
 
-## Build
+- [chart.js](https://www.chartjs.org/): Um die Übersicht des Kontostandes anzuzeigen
+- [ngx-toastr](https://github.com/scttcper/ngx-toastr): Toast Nachricht über den verlauf von Speichern, Löschen oder
+  Ändern von Werten
+- [primeicons](https://www.primefaces.org/diamond/icons.xhtml): Nutzung von Icons
+- [primeng](https://primeng.org/): Grund Styling für Buttons
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Credits to
 
-## Running unit tests
+- [Anu Rocks / freeicons.io](https://freeicons.io/regular-life-icons/money-icon-17864): Favoriten Icon
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Hinweise
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Grafisch wurde die Seite auf einem `2560x1440px` Monitor optimiert
