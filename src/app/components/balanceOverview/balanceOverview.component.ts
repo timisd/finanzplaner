@@ -1,27 +1,47 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { BalanceDto } from '../../models';
+import { BalanceService } from '../../services';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-balance-overview',
   templateUrl: './balanceOverview.component.html',
   styleUrls: ['./balanceOverview.component.scss'],
 })
-export class BalanceOverviewComponent implements OnInit {
-  @Input() public chartData!: BalanceDto[];
+export class BalanceOverviewComponent implements OnInit, OnDestroy {
+  private _subscription: Subscription | undefined;
+  private _chart: Chart | undefined;
 
-  private _chart: any;
+  constructor(private _balanceService: BalanceService) {}
 
   ngOnInit() {
-    if (this.chartData.length > 30) {
-      const index = this.chartData.length - 30;
-      this.chartData = this.chartData.slice(index);
+    this._subscription = this._balanceService.Balances$.subscribe(
+      (data: BalanceDto[]) => {
+        this.generateChart(data);
+        console.info('neue Daten');
+      }
+    );
+  }
+
+  ngOnDestroy() {
+    this._subscription?.unsubscribe();
+  }
+
+  private generateChart(data: BalanceDto[]): void {
+    if (this._chart) {
+      this._chart.destroy();
     }
 
-    const chartLabels: string[] = this.chartData.map((element: BalanceDto) =>
+    if (data.length > 30) {
+      const index = data.length - 30;
+      data = data.slice(index);
+    }
+
+    const chartLabels: string[] = data.map((element: BalanceDto) =>
       element.Date.toDateString()
     );
-    const chartValues: number[] = this.chartData.map(
+    const chartValues: number[] = data.map(
       (element: BalanceDto) => element.Balance
     );
 

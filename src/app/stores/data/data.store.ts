@@ -1,17 +1,62 @@
 import { Injectable } from '@angular/core';
 import { CashflowDto } from '../../models';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataStore {
-  public Cashflows: CashflowDto[] = [];
+  public Cashflows$: BehaviorSubject<CashflowDto[]> = new BehaviorSubject<
+    CashflowDto[]
+  >([]);
   public CurrentBalance: number = 0;
   private _testDataAdded: boolean = false;
+  private _data: CashflowDto[] = [];
 
   constructor() {
     if (!this._testDataAdded) {
       this.addTestData();
+    }
+  }
+
+  public deleteCashflow(id: number): boolean {
+    const index = this._data.findIndex((value: CashflowDto) => value.Id === id);
+
+    if (index === -1) {
+      return false;
+    }
+
+    this._data.splice(index, 1);
+    this.Cashflows$.next(this._data);
+
+    return true;
+  }
+
+  public updateCashflow(newCashflow: CashflowDto): boolean {
+    const index = this._data.findIndex(
+      (value: CashflowDto) => value.Id === newCashflow.Id
+    );
+
+    if (index === -1) {
+      return false;
+    }
+
+    this._data[index] = newCashflow;
+    this.Cashflows$.next(this._data);
+
+    return true;
+  }
+
+  public addCashflow(newCashflow: CashflowDto): boolean {
+    try {
+      this._data.push(newCashflow);
+      this.Cashflows$.next(this._data);
+
+      return true;
+    } catch (e: any) {
+      console.info(e);
+
+      return false;
     }
   }
 
@@ -38,18 +83,12 @@ export class DataStore {
         Tags: randomTags,
       };
 
-      this.Cashflows.push(cashflow);
-
-      this.Cashflows.sort((a: CashflowDto, b: CashflowDto) => {
-        const dateA: Date = a.Date;
-        const dateB: Date = b.Date;
-
-        return dateA.getDate() - dateB.getDate();
-      });
+      this._data.push(cashflow);
 
       this.CurrentBalance = 5_000;
 
       this._testDataAdded = true;
+      this.Cashflows$.next(this._data);
     }
   }
 

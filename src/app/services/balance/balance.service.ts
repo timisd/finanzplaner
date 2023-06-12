@@ -1,18 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { DataStore } from '../../stores';
 import { BalanceDto } from '../../models';
 import { CashflowService } from '../cashflow/cashflow.service';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class BalanceService {
+export class BalanceService implements OnDestroy {
+  public Balances$: BehaviorSubject<BalanceDto[]> = new BehaviorSubject<
+    BalanceDto[]
+  >([]);
+
+  private _dataSub: Subscription | undefined;
+
   constructor(
     private _dataStore: DataStore,
     private _cashflowService: CashflowService
-  ) {}
+  ) {
+    this._dataSub = this._dataStore.Cashflows$.subscribe(() => {
+      this.CalculateBalances();
+    });
+  }
 
-  public get Balances(): BalanceDto[] {
+  ngOnDestroy() {
+    this._dataSub?.unsubscribe();
+  }
+
+  private CalculateBalances(): void {
     const balances: BalanceDto[] = [];
 
     let previousCumulativeAmount = this._dataStore.CurrentBalance;
@@ -35,6 +50,6 @@ export class BalanceService {
       previousCumulativeAmount = updatedCumulativeAmount;
     }
 
-    return balances;
+    this.Balances$.next(balances);
   }
 }

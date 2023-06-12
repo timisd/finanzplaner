@@ -1,31 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { DataStore } from '../../stores';
 import { CashflowDto } from '../../models';
+import { Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CashflowService {
-  constructor(private _dataStore: DataStore) {}
+export class CashflowService implements OnDestroy {
+  private _dataSub: Subscription | undefined;
+  private _data: CashflowDto[] = [];
+
+  constructor(private _dataStore: DataStore) {
+    this._dataSub = this._dataStore.Cashflows$.subscribe(
+      (array: CashflowDto[]) => {
+        this._data = array;
+      }
+    );
+  }
 
   public get CashflowsUnsorted(): CashflowDto[] {
-    return this._dataStore.Cashflows;
+    return this._data;
   }
 
   public get CashflowsOrderedByDateASC(): CashflowDto[] {
-    return this._dataStore.Cashflows.sort(
-      (a, b) => a.Date.getTime() - b.Date.getTime()
-    );
+    return [...this._data].sort((a, b) => a.Date.getTime() - b.Date.getTime());
   }
 
   public get CashflowsOrderedByDateDES(): CashflowDto[] {
-    return this._dataStore.Cashflows.sort(
-      (a, b) => b.Date.getTime() - a.Date.getTime()
-    );
+    return [...this._data].sort((a, b) => b.Date.getTime() - a.Date.getTime());
   }
 
   public get CashflowsOrderedById(): CashflowDto[] {
-    return this._dataStore.Cashflows.sort((a, b) => a.Id - b.Id);
+    return [...this._data].sort((a, b) => a.Id - b.Id);
   }
 
   public get CashflowsPerDay(): Map<string, CashflowDto[]> {
@@ -38,37 +44,19 @@ export class CashflowService {
     }, new Map<string, CashflowDto[]>());
   }
 
+  ngOnDestroy(): void {
+    this._dataSub?.unsubscribe();
+  }
+
   public deleteCashflow(id: number): boolean {
-    const index = this.CashflowsUnsorted.findIndex(
-      (value: CashflowDto) => value.Id === id
-    );
-
-    if (index === -1) {
-      return false;
-    }
-
-    this._dataStore.Cashflows.splice(index, 1);
-
-    return true;
+    return this._dataStore.deleteCashflow(id);
   }
 
   public updateCashflow(newCashflow: CashflowDto): boolean {
-    const index = this.CashflowsUnsorted.findIndex(
-      (value: CashflowDto) => value.Id === newCashflow.Id
-    );
-
-    if (index === -1) {
-      return false;
-    }
-
-    this._dataStore.Cashflows[index] = newCashflow;
-
-    return true;
+    return this._dataStore.updateCashflow(newCashflow);
   }
 
   public addCashflow(newCashflow: CashflowDto): boolean {
-    this._dataStore.Cashflows.push(newCashflow);
-
-    return true;
+    return this._dataStore.addCashflow(newCashflow);
   }
 }
