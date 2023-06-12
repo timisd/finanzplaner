@@ -1,9 +1,9 @@
-<app-titleBar
+<app-title-bar
   (dataChanged)="dataChanged()"
   [showAddButton]="true"
   [showBackButton]="true"
   pageName="Cashflow"
-/>
+></app-title-bar>
 
 <div class="search-bar">
   <div class="search-input-wrapper">
@@ -27,24 +27,22 @@
   <div class="column">
     <div class="column-header">Einnahmen</div>
     <div class="card-wrapper">
-      <ng-container *ngFor="let cashflow of incomeData">
-        <app-cashflow-card-normal
-          (dataChanged)="dataChanged()"
-          (tagButtonClick)="tagButtonClicked($event)"
-          [data]="cashflow"
-        />
-      </ng-container>
+      <app-cashflow-card-normal
+        (dataChanged)="dataChanged()"
+        (tagButtonClick)="tagButtonClicked($event)"
+        *ngFor="let cashflow of incomeData"
+        [data]="cashflow"
+      ></app-cashflow-card-normal>
     </div>
   </div>
   <div class="column">
     <div class="column-header">Ausgaben</div>
     <div class="card-wrapper">
-      <ng-container *ngFor="let cashflow of spendingData">
-        <app-cashflow-card-normal
-          (tagButtonClick)="tagButtonClicked($event)"
-          [data]="cashflow"
-        />
-      </ng-container>
+      <app-cashflow-card-normal
+        (tagButtonClick)="tagButtonClicked($event)"
+        *ngFor="let cashflow of spendingData"
+        [data]="cashflow"
+      ></app-cashflow-card-normal>
     </div>
   </div>
 </div>

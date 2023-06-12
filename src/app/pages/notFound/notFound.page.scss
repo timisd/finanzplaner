@@ -6,47 +6,44 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.error {
-  display: flex;
-  align-items: center;
+  .error {
+    display: flex;
+    align-items: center;
 
-  .red {
-    color: red;
-    font-size: 888%;
-    margin-right: 3vw;
+    .red {
+      color: $spending-color;
+      font-size: 8rem;
+      margin-right: 3vw;
+    }
+
+    .error-message {
+      font-size: 2rem;
+    }
   }
 
-  .error-message {
-    font-size: 200%;
+  .redirection-message {
+    margin-top: 1%;
+    font-size: 1.25rem;
   }
-}
 
-.redirection-message {
-  margin-top: 1%;
-  font-size: 125%;
-}
+  .button-wrapper {
+    margin-top: 1%;
+    display: flex;
+  }
 
-.button-wrapper {
-  margin-top: 1%;
-  display: flex;
-}
+  .custom-button {
+    display: flex;
+    background-color: $accent-color;
+    color: $background-color;
+    border-color: $accent-color;
+    font-weight: bold;
+    margin-left: 15px;
 
-.custom-button {
-  display: flex;
-  background-color: $accent-color;
-  color: $background-color;
-  border-color: $accent-color;
-  font-weight: bold;
-  margin-left: 15px;
-}
-
-.custom-button:hover {
-  display: flex;
-  background-color: $text-color;
-  color: $accent-color;
-  border-color: $accent-color;
-  font-weight: bold;
-  margin-left: 15px;
+    &:hover {
+      background-color: $text-color;
+      color: $accent-color;
+      border-color: $accent-color;
+    }
+  }
 }

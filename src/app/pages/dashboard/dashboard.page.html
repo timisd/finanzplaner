@@ -1,8 +1,8 @@
-<app-titleBar pageName="Übersicht" />
+<app-title-bar pageName="Übersicht"></app-title-bar>
 
 <div class="content">
   <div class="overview">
-    <app-balance-overview />
+    <app-balance-overview></app-balance-overview>
     <div class="centered">
       <div class="current-balance">Aktueller Kontostand:</div>
       <div class="current-balance-amount">{{ currentBalance }}</div>
@@ -31,7 +31,7 @@
       <app-cashflow-card-slim
         *ngFor="let cashflow of LastCashflows"
         [data]="cashflow"
-      />
+      ></app-cashflow-card-slim>
     </div>
   </div>
 </div>

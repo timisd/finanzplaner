@@ -3,12 +3,12 @@
   <div class="title">{{ title }}</div>
   <form (ngSubmit)="submit()" [formGroup]="form" class="form">
     <div class="form-attribut-wrapper">
-      <label for="id">ID: </label>
+      <label for="id">ID:</label>
       <input [value]="getId()" disabled id="id" type="text" />
     </div>
 
     <div class="form-attribut-wrapper">
-      <label for="participant">Sender / Empfänger: </label>
+      <label for="participant">Sender / Empfänger:</label>
       <input
         formControlName="participant"
         id="participant"
@@ -18,7 +18,7 @@
     </div>
 
     <div class="form-attribut-wrapper">
-      <label for="datetime">Datum: </label>
+      <label for="datetime">Datum:</label>
       <input
         formControlName="datetime"
         id="datetime"
@@ -28,7 +28,7 @@
     </div>
 
     <div class="form-attribut-wrapper">
-      <label for="amount">Betrag: </label>
+      <label for="amount">Betrag:</label>
       <input
         formControlName="amount"
         id="amount"
@@ -39,7 +39,7 @@
     </div>
 
     <div class="form-attribut-wrapper">
-      <label for="tags">Tags: </label>
+      <label for="tags">Tags:</label>
       <input formControlName="tags" id="tags" type="text" />
     </div>
 

@@ -3,10 +3,10 @@
     <div class="participant">{{ wrapper.Participant }}</div>
     <div class="day">{{ wrapper.FormattedDate }}</div>
   </div>
-  <div *ngIf="data.IsIncome" class="amount income">
-    {{ wrapper.FormattedAmount }}
-  </div>
-  <div *ngIf="!data.IsIncome" class="amount spending">
-    {{ wrapper.FormattedAmount }}
-  </div>
+  <ng-container *ngIf="data.IsIncome; else spendingAmount">
+    <div class="amount income">{{ wrapper.FormattedAmount }}</div>
+  </ng-container>
+  <ng-template #spendingAmount>
+    <div class="amount spending">{{ wrapper.FormattedAmount }}</div>
+  </ng-template>
 </div>

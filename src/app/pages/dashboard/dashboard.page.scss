@@ -3,7 +3,7 @@
 .title {
   text-align: center;
   margin: 2%;
-  font-size: 222%;
+  font-size: 2.22rem;
   font-weight: bold;
   text-shadow: 0 0 10px $accent-color;
 }
@@ -26,13 +26,13 @@
       .current-balance {
         text-align: center;
         margin-bottom: 10px;
-        font-size: 200%;
+        font-size: 2rem;
         font-weight: bold;
         text-shadow: 0 0 10px $accent-color;
       }
 
       .current-balance-amount {
-        font-size: 400%;
+        font-size: 4rem;
         font-weight: bold;
         text-shadow: 0 0 10px $accent-color;
       }
@@ -49,7 +49,7 @@
       margin: 5% 5% 0 5%;
 
       .label {
-        font-size: 200%;
+        font-size: 2rem;
         font-weight: bold;
         text-shadow: 0 0 10px $accent-color;
         margin-right: 10px;

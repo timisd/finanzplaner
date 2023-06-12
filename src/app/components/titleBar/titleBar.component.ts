@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CashflowDialogComponent } from '../cashflowDialog/cashflowDialog.component';
 
 @Component({
-  selector: 'app-titleBar',
+  selector: 'app-title-bar',
   templateUrl: './titleBar.component.html',
   styleUrls: ['./titleBar.component.scss'],
 })
