@@ -19,7 +19,6 @@ export class BalanceOverviewComponent implements OnInit, OnDestroy {
     this._subscription = this._balanceService.Balances$.subscribe(
       (data: BalanceDto[]) => {
         this.generateChart(data);
-        console.info('neue Daten');
       }
     );
   }
