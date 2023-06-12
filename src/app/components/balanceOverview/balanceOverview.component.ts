@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { Subscription } from 'rxjs';
 import { BalanceDto } from '../../models';
 import { BalanceService } from '../../services';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-balance-overview',

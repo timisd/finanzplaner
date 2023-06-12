@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CashflowDialogComponent } from '../cashflowDialog/cashflowDialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { CashflowDialogComponent } from '../cashflowDialog/cashflowDialog.component';
 
 @Component({
   selector: 'app-titleBar',

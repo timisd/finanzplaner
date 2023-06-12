@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CashflowDto, CashflowWrapper } from '../../../models';
-import { CashflowService } from '../../../services';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
+import { CashflowDto, CashflowWrapper } from '../../../models';
+import { CashflowService } from '../../../services';
 import { CashflowDialogComponent } from '../../cashflowDialog/cashflowDialog.component';
 
 @Component({
@@ -12,8 +12,9 @@ import { CashflowDialogComponent } from '../../cashflowDialog/cashflowDialog.com
 })
 export class CashflowCardNormalComponent {
   @Input() public data!: CashflowDto;
-  @Output() tagButtonClick: EventEmitter<string> = new EventEmitter<string>();
-  @Output() dataChanged: EventEmitter<void> = new EventEmitter<void>();
+  @Output() public tagButtonClick: EventEmitter<string> =
+    new EventEmitter<string>();
+  @Output() public dataChanged: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private _cashflowService: CashflowService,

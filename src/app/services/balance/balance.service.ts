@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { DataStore } from '../../stores';
 import { BalanceDto } from '../../models';
 import { CashflowService } from '../cashflow/cashflow.service';
-import { BehaviorSubject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

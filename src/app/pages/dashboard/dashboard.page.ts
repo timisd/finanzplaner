@@ -1,10 +1,10 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { BalanceDto, BalanceWrapper, CashflowDto } from '../../models';
 import { BalanceService, CashflowService } from '../../services';
 import { CashflowDialogComponent } from '../../components';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-page-dashboard',
